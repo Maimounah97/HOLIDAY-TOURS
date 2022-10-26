@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="row justify-content-center">
+    <div class="col-md-12 col-xl-10">
+        <div class="card shadow mb-5 mt-5 bg-white rounded  p-5">
+            <div class="text-center">
+                <h1 class="pro-d-title">
+                    <strong>
+                        <p>{{ trip.name }}</p>
+                    </strong>
+                </h1>
+                <hr>
+                <br>
+            </div>
+
+
+            <form class="mb-5 mt-5" method="post" action="">
+                <div>
+                    <label for="exampleFormControlTextarea1">Post a Review</label>
+                    <textarea name="rev" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                </div>
+                <div class="text-end">
+                    {% csrf_token %}
+                    <input class="btn  mt-2" type="submit" value="Post a Review">
+                </div>
+            </form>
+            {% for review in reviews %}
+            <div class="reviews">
+                
+                    <p class="name"><strong>{{review.user.first_name}} {{review.user.last_name}} </p> </strong>
+               
+                <div class="text-end">
+                    <p class="date">{{review.created_at}}</p>
+                    {% if review.user.id == request.session.userid %}
+                    <a class="link text-end" href="/deletereview/{{review.id}}"> <img
+                        src="{% static '/images/trash.png' %}" height="20px" width="20px"
+                        alt=""></a>
+                        {% endif %}
+                </div>
+                    
+                       
+                    
+                
+               
+
+
+
+                <p class="font-weight-light">{{review.riv}}</p>
+
+                <div class="comments mt-5">
+
+                    {% for comment in review.comments.all %}
+                    <div class="comment">
+                    <p class="name"><strong>{{comment.poster.first_name}} {{comment.poster.last_name}}</strong> </p>
+                    <div class="text-end">
+                            <p class="date">{{comment.created_at}}</p>
+                        {% if comment.poster.id == request.session.userid %}
+                        
+                        <a class="link" href="/deletecomment/{{comment.id}}"> <img
+                            src="{% static '/images/trash.png' %}" height="20px" width="20px"
+                            alt=""></a>
+                            {% endif %}
+                        </div>
+                    
+                    
+
+                    </p>
+                    <p class="comment-text">{{comment.comment}}</p>
+
+                </div>
+                    {% endfor %}
+                    <form method="post" action="/postcomment/{{review.id}}">
+
+                        <div>
+                            <label for="exampleFormControlTextarea1">Post a Comment</label>
+                            <textarea name="comment" class="form-control" id="exampleFormControlTextarea1"
+                                rows="2"></textarea>
+                        </div>
+                        <div class="text-end">
+                            {% csrf_token %}
+                            <input class="btn  mt-2 " type="submit" value="Post a Comment">
+                        </div>
+                    </form>
+                </div>
+                <br>
+            </div>
+                {% endfor %}
+            
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

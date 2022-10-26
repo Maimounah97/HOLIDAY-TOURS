@@ -1,0 +1,94 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* margin: 10px auto; */
+}
+
+
+
+/* #interior > form > textarea {
+    margin-left: 10px;
+} */
+
+.reviews {
+    /* width: 1135px; */
+    background-color: rgb(216, 216, 216);
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.reviews h4 {
+    margin: 0px;
+    display: inline-block;
+}
+
+.reviews p {
+    margin-left: 20px;
+    padding-right: 20px;
+}
+
+.comments{
+    margin-left: 30px;
+}
+
+.comment {
+    
+    background-color: rgb(196, 196, 196);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.comments h5 {
+    margin: 0px;
+    display: inline-block;
+}
+
+.comments p {
+    margin: 0px 0px 0px 5px;
+    padding: 5px;
+}
+
+.comments textarea {
+    margin: 10px 0px;
+}
+
+.date {
+    font-size: 8pt;
+    display: inline-block;
+    margin-left: 10px;
+}
+.name{
+    display: inline-block;
+    
+}
+
+.comment .name{
+    font-size: 10pt;  
+    display: inline-block;
+}
+.comment .date {
+    font-size: 7pt;
+   
+}
+.comment-text{
+   font-size: 9pt;
+   
+}
+
+.btn {
+    
+    padding: 8px;
+    border-radius: 7px;
+    box-shadow: 2px 3px 2px gray;
+    font-size: 11pt;
+    border: 2px solid black;
+
+}
+.btn:hover {
+    
+    padding: 8px;
+    border-radius: 7px;
+    box-shadow: 5px 5px 4px gray;
+    font-size: 11pt;
+    border: 2px solid black;
+
+}

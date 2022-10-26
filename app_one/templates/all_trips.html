@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<section class=" py-5 text-center container">
+  
+    <div class="row py-lg-5">
+      <div class="ourCard py-5 w-75 col-lg-6 col-md-8 mx-auto">
+        
+        <h1 class="fw-light">ABOUT US</h1>
+        <p class="lead ">Enjoy a more convenient and personalized experience powered by the latest technology.
+          Whatever your destination, Holiday Tours is your way to arrange your travel right at the comfort of your home.
+          We offer you a service without the hassle of going to any office. We make your travel easy for hotel, flight and
+          holiday bookings by showing other people ideas and travel arrangments ..</p>
+        <p>
+          <a href="/likedTrips" class="btn btn-sm btn-outline">View Your Liked Tours</a>
+        </p>
+      </div>
+    </div>
+
+ 
+</section>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+  {% for trip in all_trips %}
+  <div class="col">
+    <div class="card shadow-sm">
+      <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{trip.image.url}}" alt="">
+
+      <div class="card-body">
+        <text class="cardStyleP card-text" x="50%" y="50%" fill="#eceeef" dy=".3em">{{trip.name}}</text>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <label for="" class="cardStyleLabel">Added By: </label>
+            <label for="" class="cardStyleLabel">{{trip.created_user.first_name}}
+              {{trip.created_user.last_name}}</label>
+          </div>
+          <small class="cardStyleLabel text-muted">{{trip.created_at}}</small>
+        </div>
+        <div>
+          <br>
+          <!-- <button type="button" class="btn btn-sm btn-outline-secondary"><img src="{% static '/images/view-details-2-16.png' %}" height="20px" width="20px" alt=""><a class="link" href="trips/{{trip.id}}"> Details</a></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"><img src="{% static '/images/like-icon-png-4173.png' %}" height="20px" width="20px" alt=""><a class="link" href="trips/{{trip.id}}"> Like</a></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"><img src="{% static '/images/font-comment-png-icon-free-download-654900.png' %}" height="20px" width="20px" alt=""><a class="link" href=""> Reviews</a></button> -->
+          <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="{% url 'view_trip' trip.id%}"> <img
+                src="{% static '/images/view-details-2-16.png' %}" height="20px" width="20px" alt=""></a></button>
+          {% if trip in likedTrips %}
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="/remove/{{trip.id}}"> <img
+                src="{% static '/images/like-icon-png-4173.png' %}" height="20px" width="20px" alt=""></a></button>
+              {% else %}
+              <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="/addToLikedTrip/{{trip.id}}"> <img
+                src="{% static '/images/empty_heart.png' %}" height="20px" width="20px" alt=""></a></button> 
+          {% endif %}
+          <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="/reviews/{{trip.id}}"> <img
+                src="{% static '/images/font-comment-png-icon-free-download-654900.png' %}" height="20px" width="20px"
+                alt=""></a></button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  {% for trip in trips_added_by_currentUser %}
+  <div class="col mb-2">
+    <div class="card shadow-sm">
+      <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{trip.image.url}}" alt="">
+
+      <div class="card-body">
+        <text class="cardStyleP card-text" x="50%" y="50%" fill="#eceeef" dy=".3em">{{trip.name}}</text>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <label for="" class="cardStyleLabel">Added By: </label>
+            <label for="" class="cardStyleLabel">{{trip.created_user.first_name}}
+              {{trip.created_user.last_name}}</label>
+          </div>
+          <small class="cardStyleLabel text-muted">{{trip.created_at}}</small>
+        </div>
+        <div>
+          <br>
+          <!-- <button type="button" class="btn btn-sm btn-outline-secondary"><img src="{% static '/images/view-details-2-16.png' %}" height="20px" width="20px" alt=""><a class="link" href="trips/{{trip.id}}"> Details</a></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"><img src="{% static '/images/like-icon-png-4173.png' %}" height="20px" width="20px" alt=""><a class="link" href="trips/{{trip.id}}"> Like</a></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"><img src="{% static '/images/font-comment-png-icon-free-download-654900.png' %}" height="20px" width="20px" alt=""><a class="link" href=""> Reviews</a></button> -->
+          <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="{% url 'view_trip' trip.id%}"> <img
+                src="{% static '/images/view-details-2-16.png' %}" height="20px" width="20px" alt=""></a></button>
+                {% if trip in likedTrips %}
+                <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="/remove/{{trip.id}}"> <img
+                src="{% static '/images/like-icon-png-4173.png' %}" height="20px" width="20px" alt=""></a></button>
+              {% else %}
+              <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="/addToLikedTrip/{{trip.id}}"> <img
+                src="{% static '/images/empty_heart.png' %}" height="20px" width="20px" alt=""></a></button> 
+          {% endif %}
+          <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="/reviews/{{trip.id}}"> <img
+                src="{% static '/images/font-comment-png-icon-free-download-654900.png' %}" height="20px" width="20px"
+                alt=""></a></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"><a class="link" href="/delete/{{trip.id}}"> <img
+            src="{% static '/images/trash.png' %}" height="20px" width="20px"
+            alt=""></a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}
+
